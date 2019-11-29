@@ -14,7 +14,7 @@ public class AirPlane {
     private boolean undercarriage;
     private Coordinate coordinate;
 
-    public AirPlane(String brand, String model, String licensePlate, String origin, String destination, int passengerCapacity, int crew, float velocity, float autonomy, float route, boolean undercarriage, int x, int y, int z) {
+    public AirPlane(String brand, String model, String licensePlate, String origin, String destination, int passengerCapacity, int crew, float autonomy, float route, boolean undercarriage, int x, int y, int z) {
         this.brand = brand;
         this.model = model;
         this.licensePlate = licensePlate;
@@ -22,15 +22,11 @@ public class AirPlane {
         this.destination = destination;
         this.passengerCapacity = passengerCapacity;
         this.crew = crew;
-        this.velocity = velocity;
+        this.velocity = 0;
         this.autonomy = autonomy;
         this.route = route;
-        this.undercarriage = undercarriage;
-        this.coordinate = new Coordinate(x, y, z);
-    }
-
-    public void canviarMoviment(float) {
-
+        this.undercarriage = true;
+        this.coordinate = new Coordinate(100, y, z);
     }
 
     public String getBrand() { return brand; }
@@ -80,4 +76,17 @@ public class AirPlane {
     public Coordinate getCoordinate() { return coordinate; }
 
     public void setCoordinate(Coordinate coordinate) { this.coordinate = coordinate; }
+
+    public boolean canviarMoviment() {
+
+    }
+
+    public boolean apagarMotor() {
+
+    }
+
+    public void acelerarMotor() {
+
+    }
+
 }
