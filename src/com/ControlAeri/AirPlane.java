@@ -77,13 +77,13 @@ public class AirPlane {
 
     public void setCoordinate(Coordinate coordinate) { this.coordinate = coordinate; }
 
-    public boolean canviarMoviment() {
+    /*public boolean canviarMoviment() {
 
-    }
+    }*/
 
-    public boolean apagarMotor() {
+    /*public boolean apagarMotor() {
 
-    }
+    }*/
 
     public void acelerarMotor() {
 
