@@ -1,8 +1,12 @@
 package com.ControlAeri;
 
-public class Menu {
+import java.util.Scanner;
 
-    public static void menuControl() {
+public class Menu {
+    private static Scanner keyboard = new Scanner(System.in);
+
+
+    public static int menuControl() {
         System.out.println("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
         System.out.println("█                                                             █");
         System.out.println("█                  1.Add AirPlane                             █");
@@ -15,10 +19,16 @@ public class Menu {
         System.out.println("█                                                             █");
         System.out.println("█                  5.Decrypt Battle AirPlanes                 █");
         System.out.println("█                                                             █");
+        System.out.println("█                  0.Exit                                     █");
+        System.out.println("█                                                             █");
         System.out.println("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
+
+        int option = keyboard.nextInt();
+
+        return option;
     }
 
-    public static void menuManage() {
+    public static int menuManage() {
         System.out.println("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
         System.out.println("█                                                             █");
         System.out.println("█                  0.Turn ON motor                            █");
@@ -44,6 +54,10 @@ public class Menu {
         System.out.println("█                  10.Exit                                    █");
         System.out.println("█                                                             █");
         System.out.println("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
+
+        int option = keyboard.nextInt();
+
+        return option;
     }
 
 }

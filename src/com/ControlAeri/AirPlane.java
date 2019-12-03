@@ -12,21 +12,22 @@ public class AirPlane {
     private float autonomy;
     private float route;
     private boolean undercarriage;
+    private boolean motor = false;
     private Coordinate coordinate;
 
-    public AirPlane(String brand, String model, String licensePlate, String origin, String destination, int passengerCapacity, int crew, float autonomy, float route, boolean undercarriage, int x, int y, int z) {
+    public AirPlane(String brand, String model, String licensePlate/*, String origin, String destination*/, int passengerCapacity/*, int crew, float autonomy, float route, boolean undercarriage, int x, int y, int z*/) {
         this.brand = brand;
         this.model = model;
         this.licensePlate = licensePlate;
-        this.origin = origin;
-        this.destination = destination;
         this.passengerCapacity = passengerCapacity;
+        /*this.origin = origin;
+        this.destination = destination;
         this.crew = crew;
         this.velocity = 0;
         this.autonomy = autonomy;
         this.route = route;
         this.undercarriage = true;
-        this.coordinate = new Coordinate(100, y, z);
+        this.coordinate = new Coordinate(100, y, z);*/
     }
 
     public String getBrand() { return brand; }
@@ -69,13 +70,17 @@ public class AirPlane {
 
     public void setRoute(float route) { this.route = route; }
 
-    public boolean isUndercarriage() { return undercarriage; }
+    public boolean getUndercarriage() { return undercarriage; }
 
     public void setUndercarriage(boolean undercarriage) { this.undercarriage = undercarriage; }
 
     public Coordinate getCoordinate() { return coordinate; }
 
     public void setCoordinate(Coordinate coordinate) { this.coordinate = coordinate; }
+
+    public boolean getMotor() { return motor; }
+
+    public void setMotor(boolean motor) { this.motor = motor; }
 
     /*public boolean canviarMoviment() {
 
