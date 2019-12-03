@@ -60,7 +60,7 @@ public class AirController {
         System.out.println("");
         System.out.print("X");
         for(int i = 0; i < OnAirPlane.size(); i++) {
-            if(OnAirPlane.get(i).getCoordinate().getX().isEmpty()) {
+            if(OnAirPlane.get(i).getCoordinate().getX().) {
 
             }
             System.out.print(OnAirPlane.get(i).getCoordinate().getX());
