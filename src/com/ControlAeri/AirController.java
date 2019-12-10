@@ -23,104 +23,94 @@ public class AirController {
         System.out.print("Passenger Capacity: ");
         int passengerCapacity = keyboard.nextInt();
 
-        OnAirPlane.add(new AirPlane(brand, model, licensePlate, passengerCapacity));
+        System.out.print("Crew: ");
+        int crew = keyboard.nextInt();
+
+        System.out.println("Destination: ");
+        String destination = keyboard.nextLine();
+
+        OnAirPlane.add(new AirPlane(brand, model, licensePlate, destination, passengerCapacity, crew));
 
     }
 
     public static void showAirSpace() {
-        System.out.print("                     AirPlane 1");
-        System.out.print("AirPlane 2    ");
-        System.out.print("AirPlane 3    ");
-        System.out.print("AirPlane 4    ");
-        System.out.print("AirPlane 5    ");
-        System.out.print("AirPlane 6    ");
-        System.out.print("AirPlane 7    ");
-        System.out.print("AirPlane 8    ");
-        System.out.print("AirPlane 9    ");
-        System.out.print("AirPlane 10   ");
+        System.out.print("                     BRAND    ");
+        System.out.print("MODEL    ");
+        System.out.print("LICENSE PLATE    ");
+        System.out.print("X    ");
+        System.out.print("Y    ");
+        System.out.print("HEIGHT    ");
+        System.out.print("VELOCITY    ");
+        System.out.print("UNDERCARRIAGE    ");
+        System.out.print("MOTOR    ");
+        System.out.print("MISSILES   ");
+        System.out.print("ORIGIN   ");
+        System.out.print("DESTINATION   ");
 
         System.out.println("");
-        System.out.print("Brand ");
+        System.out.print("AirPlane 1 ");
         for(int i = 0; i < OnAirPlane.size(); i++) {
-            System.out.print(OnAirPlane.get(i).getBrand());
+            System.out.print("               " + OnAirPlane.get(i).getBrand());
         }
 
         System.out.println("");
-        System.out.print("Model ");
+        System.out.print("AirPlane 2 ");
         for(int i = 0; i < OnAirPlane.size(); i++) {
-            System.out.print(OnAirPlane.get(i).getModel());
+            System.out.print("               " + OnAirPlane.get(i).getModel());
         }
 
         System.out.println("");
-        System.out.print("License Plate");
+        System.out.print("AirPlane 3 ");
         for(int i = 0; i < OnAirPlane.size(); i++) {
-            System.out.print(OnAirPlane.get(i).getLicensePlate());
+            System.out.print("               " + OnAirPlane.get(i).getLicensePlate());
         }
 
         System.out.println("");
-        System.out.print("X");
+        System.out.print("AirPlane 3 ");
         for(int i = 0; i < OnAirPlane.size(); i++) {
-            if(OnAirPlane.get(i).getCoordinate().getX().) {
-
-            }
-            System.out.print(OnAirPlane.get(i).getCoordinate().getX());
+            System.out.print("               " + OnAirPlane.get(i).getCoordinate().getX());
         }
 
         System.out.println("");
-        System.out.print("Y");
+        System.out.print("AirPlane 4 ");
         for(int i = 0; i < OnAirPlane.size(); i++) {
-            if(OnAirPlane.get(i).getCoordinate().getY().isEmpty()) {
-
-            }
-            System.out.print(OnAirPlane.get(i).getCoordinate().getY());
+            System.out.print("               " + OnAirPlane.get(i).getCoordinate().getY());
         }
 
         System.out.println("");
-        System.out.print("Height");
+        System.out.print("AirPlane 5 ");
         for(int i = 0; i < OnAirPlane.size(); i++) {
-            if(OnAirPlane.get(i).getCoordinate().getZ().isEmpty()) {
-
-            }
-            System.out.print(OnAirPlane.get(i).getCoordinate().getZ());
+            System.out.print("               " + OnAirPlane.get(i).getCoordinate().getZ());
         }
 
         System.out.println("");
-        System.out.print("Velocity");
+        System.out.print("AirPlane 6 ");
         for(int i = 0; i < OnAirPlane.size(); i++) {
-            if(OnAirPlane.get(i).getVelocity().isEmpty()) {
-
-            }
-            System.out.print(OnAirPlane.get(i).getVelocity());
+            System.out.print("               " + OnAirPlane.get(i).getVelocity());
         }
 
         System.out.println("");
-        System.out.print("Undercarriage");
+        System.out.print("AirPlane 7 ");
         for(int i = 0; i < OnAirPlane.size(); i++) {
-            System.out.print(OnAirPlane.get(i).getUndercarriage());
+            System.out.print("               " + OnAirPlane.get(i).getUndercarriage());
         }
 
         System.out.println("");
-        System.out.print("Motor");
+        System.out.print("AirPlane 8 ");
         for(int i = 0; i < OnAirPlane.size(); i++) {
-            System.out.print(OnAirPlane.get(i).getMotor());
+            System.out.print("               " + OnAirPlane.get(i).getMotor());
         }
 
         System.out.println("");
-        System.out.print("Missiles");
+        System.out.print("AirPlane 9 ");
         for(int i = 0; i < OnAirPlane.size(); i++) {
-            System.out.print(OnAirPlane.get(i).getCoordinate().getX());
+            System.out.print("               " + OnAirPlane.get(i).getCoordinate().getX());
         }
 
         System.out.println("");
-        System.out.print("Origin");
+        System.out.print("AirPlane 10 ");
         for(int i = 0; i < OnAirPlane.size(); i++) {
-            System.out.print(OnAirPlane.get(i).getOrigin());
-        }
-
-        System.out.println("");
-        System.out.print("Destination");
-        for(int i = 0; i < OnAirPlane.size(); i++) {
-            System.out.print(OnAirPlane.get(i).getDestination());
+            System.out.print("               " + OnAirPlane.get(i).getOrigin());
         }
     }
 

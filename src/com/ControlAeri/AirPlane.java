@@ -4,30 +4,24 @@ public class AirPlane {
     private String brand;
     private String model;
     private String licensePlate;
-    private String origin;
+    private String origin = "BCN";
     private String destination;
     private int passengerCapacity;
     private int crew;
-    private float velocity;
-    private float autonomy;
+    private float velocity = 0;
     private float route;
-    private boolean undercarriage;
+    private boolean undercarriage = true;
     private boolean motor = false;
     private Coordinate coordinate;
 
-    public AirPlane(String brand, String model, String licensePlate/*, String origin, String destination*/, int passengerCapacity/*, int crew, float autonomy, float route, boolean undercarriage, int x, int y, int z*/) {
+    public AirPlane(String brand, String model, String licensePlate, String destination, int passengerCapacity, int crew) {
         this.brand = brand;
         this.model = model;
         this.licensePlate = licensePlate;
         this.passengerCapacity = passengerCapacity;
-        /*this.origin = origin;
         this.destination = destination;
         this.crew = crew;
-        this.velocity = 0;
-        this.autonomy = autonomy;
-        this.route = route;
-        this.undercarriage = true;
-        this.coordinate = new Coordinate(100, y, z);*/
+        this.coordinate = new Coordinate(100, 100, 0);
     }
 
     public String getBrand() { return brand; }
@@ -61,10 +55,6 @@ public class AirPlane {
     public float getVelocity() { return velocity; }
 
     public void setVelocity(float velocity) { this.velocity = velocity; }
-
-    public float getAutonomy() { return autonomy; }
-
-    public void setAutonomy(float autonomy) { this.autonomy = autonomy; }
 
     public float getRoute() { return route; }
 
