@@ -17,7 +17,8 @@ public class Main {
 
         switch(option) {
             case 1:
-                AirController.addAirPlane();
+                int concretAirPlane = Menu.menuConcretAirPlane();
+                AirController.addAirPlane(concretAirPlane);
                 break;
             case 2:
                 //manageAirPlane();

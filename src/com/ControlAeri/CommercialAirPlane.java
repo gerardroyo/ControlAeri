@@ -2,10 +2,14 @@ package com.ControlAeri;
 
 public class CommercialAirPlane extends AirPlane {
 
-    private boolean Adapted;
+    private boolean Adapted = true;
 
-    public CommercialAirPlane(String brand, String model, String licensePlate, String origin, String destination, int passengerCapacity, int crew, float autonomy, float route, boolean undercarriage, int x, int y, int z, boolean adapted) {
+    public CommercialAirPlane(String brand, String model, String licensePlate, String destination, int passengerCapacity, int crew) {
         super(brand, model, licensePlate, destination, passengerCapacity, crew);
-        this.Adapted = adapted;
+    }
+
+    @Override
+    public String toString() {
+        return "(Comercial)" + super.toString() + "Adapted=" + Adapted;
     }
 }

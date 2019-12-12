@@ -22,4 +22,12 @@ public class Coordinate {
     public int getZ() { return z; }
 
     public void setZ(int z) { this.z = z; }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "x = " + x +
+                ", y = " + y +
+                ", z = " + z;
+    }
 }

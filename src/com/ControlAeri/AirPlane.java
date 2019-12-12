@@ -84,4 +84,20 @@ public class AirPlane {
 
     }
 
+    @Override
+    public String toString() {
+        return "AirPlane: " +
+                "brand = " + brand +
+                ", model = " + model +
+                ", licensePlate = " + licensePlate +
+                ", origin = " + origin +
+                ", destination = " + destination +
+                ", passengerCapacity = " + passengerCapacity +
+                ", crew = " + crew +
+                ", velocity = " + velocity +
+                ", route = " + route +
+                ", undercarriage = " + undercarriage +
+                ", motor = " + motor +
+                ", coordinate = " + coordinate;
+    }
 }
