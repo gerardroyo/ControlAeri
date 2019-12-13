@@ -27,10 +27,10 @@ public class Main {
                 AirController.showAirSpace();
                 break;
             case 4:
-                //EncryptBAP();
+                //EncryptBattAirPlane();
                 break;
             case 5:
-                //DecryptBAP();
+                //DecryptBattAirPlane();
                 break;
             case 0:
                 exit = true;

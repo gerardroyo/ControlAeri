@@ -97,7 +97,6 @@ public class AirPlane {
                 ", velocity = " + velocity +
                 ", route = " + route +
                 ", undercarriage = " + undercarriage +
-                ", motor = " + motor +
-                ", coordinate = " + coordinate;
+                ", motor = " + motor;
     }
 }

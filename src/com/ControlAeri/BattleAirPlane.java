@@ -15,4 +15,29 @@ public class BattleAirPlane extends AirPlane {
         this.Enemy = enemy;
         this.Encrypted = encrypted;
     }
+
+    public ArrayList<Missile> getMissiles() { return Missiles; }
+
+    public void setMissiles(ArrayList<Missile> missiles) { Missiles = missiles; }
+
+    public float getMaxRangeShot() { return MaxRangeShot; }
+
+    public void setMaxRangeShot(float maxRangeShot) { MaxRangeShot = maxRangeShot; }
+
+    public boolean isEnemy() { return Enemy; }
+
+    public void setEnemy(boolean enemy) { Enemy = enemy; }
+
+    public boolean isEncrypted() { return Encrypted; }
+
+    public void setEncrypted(boolean encrypted) { Encrypted = encrypted; }
+
+    @Override
+    public String toString() {
+        return "(Battle) " + super.toString() +
+                ", Missiles = " + Missiles +
+                ", MaxRangeShot = " + MaxRangeShot +
+                ", Enemy = " + Enemy +
+                ", Encrypted = " + Encrypted + ".";
+    }
 }

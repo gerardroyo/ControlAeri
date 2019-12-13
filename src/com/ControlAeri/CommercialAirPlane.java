@@ -8,8 +8,12 @@ public class CommercialAirPlane extends AirPlane {
         super(brand, model, licensePlate, destination, passengerCapacity, crew);
     }
 
+    public boolean isAdapted() { return Adapted; }
+
+    public void setAdapted(boolean adapted) { Adapted = adapted; }
+
     @Override
     public String toString() {
-        return "(Comercial)" + super.toString() + "Adapted=" + Adapted;
+        return "(Comercial) " + super.toString() + ", Adapted = " + Adapted + ".";
     }
 }

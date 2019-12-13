@@ -11,39 +11,66 @@ public class AirController {
     private static Scanner keyboard = new Scanner(System.in);
 
     public static void addAirPlane(int concretAirPlane) {
-        System.out.print("Brand: ");
-        String brand = keyboard.next();
+        if(OnAirPlane.size() < 10) {
+            System.out.print("Brand: ");
+            String brand = keyboard.next();
 
-        System.out.print("Model: ");
-        String model = keyboard.next();
+            System.out.print("Model: ");
+            String model = keyboard.next();
 
-        System.out.print("LicensePlate: ");
-        String licensePlate = keyboard.next();
+            System.out.print("LicensePlate: ");
+            String licensePlate = keyboard.next();
 
-        System.out.print("Passenger Capacity: ");
-        int passengerCapacity = keyboard.nextInt();
+            System.out.print("Passenger Capacity: ");
+            int passengerCapacity = keyboard.nextInt();
 
-        System.out.print("Crew: ");
-        int crew = keyboard.nextInt();
+            System.out.print("Crew: ");
+            int crew = keyboard.nextInt();
 
-        System.out.print("Destination: ");
-        String destination = keyboard.next();
+            System.out.print("Destination: ");
+            String destination = keyboard.next();
 
-        if(concretAirPlane == 1) {
-            OnAirPlane.add(new CommercialAirPlane(brand, model, licensePlate, destination, passengerCapacity, crew));
+            if(concretAirPlane == 1) {
+                OnAirPlane.add(new CommercialAirPlane(brand, model, licensePlate, destination, passengerCapacity, crew));
+            } else {
+
+                System.out.print("Max Range Shot: ");
+                int maxRangeShot = keyboard.nextInt();
+//-------------------------------------------------------------------------------------------------------------------------------------\\
+                System.out.print("Enemy(true/false): ");
+                boolean enemy;
+
+                while(keyboard.hasNextBoolean() == false) {
+                    keyboard.nextLine();
+
+                    System.out.print("Enemy (true/false): ");
+                }
+                enemy = keyboard.nextBoolean();
+//--------------------------------------------------------------------------------------------------------------------------------------\\
+                System.out.print("Encrypted (true/false): ");
+                boolean encrypted;
+
+                while(keyboard.hasNextBoolean() == false) {
+                    keyboard.nextLine();
+
+                    System.out.print("Encrypted (true/false): ");
+                }
+                encrypted = keyboard.nextBoolean();
+
+                OnAirPlane.add(new BattleAirPlane(brand, model, licensePlate, destination, passengerCapacity, crew, maxRangeShot, enemy, encrypted));
+            }
         } else {
-            OnAirPlane.add(new AirPlane(brand, model, licensePlate, destination, passengerCapacity, crew));
+            System.out.println("You have created the max Air Planes that the Air Controller can control at the same time.");
         }
-
-
 
     }
 
     public static void showAirSpace() {
+        int counter = 1;
         for(AirPlane a: OnAirPlane) {
-            System.out.println(a.toString());
+            System.out.println(counter + ". " + a.toString());
+            counter++;
         }
     }
-
 }
 
