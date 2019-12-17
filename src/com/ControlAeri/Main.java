@@ -14,6 +14,9 @@ public class Main {
     }
 
     public static boolean switchMenuControl(int option, boolean exit) {
+
+        AirPlane airPlaneToManipulate;
+
         switch(option) {
             case 1:
                 int concretAirPlane = Menu.menuConcretAirPlane();
@@ -24,7 +27,15 @@ public class Main {
                 }
                 break;
             case 2:
-                //manageAirPlane();
+                if(!AirController.controlManager()){
+                    airPlaneToManipulate = AirController.askForAirPlane();
+                    int optionManage = Menu.menuManage();
+                    AirPlane.optionSelected(optionManage, airPlaneToManipulate);
+                } else {
+                    System.out.println("There aren't AirPlanes created.");
+                }
+
+
                 break;
             case 3:
                 AirController.showAirSpace();

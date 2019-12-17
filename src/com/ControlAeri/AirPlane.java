@@ -1,5 +1,7 @@
 package com.ControlAeri;
 
+import java.util.Scanner;
+
 public class AirPlane {
     private String brand;
     private String model;
@@ -77,16 +79,76 @@ public class AirPlane {
 
     public void setTrack(boolean track) { this.track = track; }
 
-    /*public boolean canviarMoviment() {
 
-    }*/
+    public static void optionSelected(int option, AirPlane airPlane) {
 
-    /*public boolean apagarMotor() {
+        switch(option) {
+            case 0:
+                break;
+            case 1:
+                TurnONMotor(airPlane);
+                break;
+            case 2:
+                TurnOFFMotor(airPlane);
+                break;
+            case 3:
 
-    }*/
+                break;
+            case 4:
 
-    public void acelerarMotor() {
+                break;
+            case 5:
 
+                break;
+            case 6:
+
+                break;
+            case 7:
+
+                break;
+            case 8:
+
+                break;
+            case 9:
+
+                break;
+            case 10:
+
+                break;
+        }
+
+    }
+
+    public static void TurnONMotor(AirPlane airPlane) {
+
+        if(airPlane.getCoordinate().getZ() > 0 && airPlane.getMotor() == true) {
+            System.out.println("The motor is already on.");
+        } else {
+            System.out.println("Turning ON...");
+            airPlane.setMotor(true);
+            System.out.println("Ready");
+        }
+    }
+
+    public static void TurnOFFMotor(AirPlane airPlane) {
+        Scanner keyboard = new Scanner(System.in);
+        if(airPlane.getCoordinate().getZ() > 0) {
+            System.out.println("The AirPlane is on air, are you sure(true/false)?");
+            while(keyboard.hasNextBoolean() == false) {
+                keyboard.nextLine();
+                System.out.println("Incorrect value, try again.");
+                System.out.println("The AirPlane is on air, are you sure(true/false)?");
+            }
+            if(keyboard.nextBoolean()) {
+                System.out.println("The AirPlane fall down and get crashed... that was a bad idea.");
+                AirController.deleteAirPlane(airPlane);
+                //--------------------------------------------------------------------------------------------------------------------\\
+            }
+        } else {
+            System.out.println("Turning ON...");
+            airPlane.setMotor(true);
+            System.out.println("Ready");
+        }
     }
 
     @Override

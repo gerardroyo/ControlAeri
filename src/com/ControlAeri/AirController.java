@@ -90,12 +90,25 @@ public class AirController {
 
     }
 
+    public static void deleteAirPlane(AirPlane airPlane) {
+        OnAirPlane.remove(airPlane);
+    }
+
     public static void showAirSpace() {
         int counter = 1;
         for(AirPlane a: OnAirPlane) {
             System.out.println(counter + ". " + a.toString());
             counter++;
         }
+    }
+
+    public static boolean controlManager() {
+        boolean empty = false;
+
+        if(OnAirPlane.isEmpty()) {
+            empty = true;
+        }
+        return empty;
     }
 
     public static boolean somePlaneInTrack() {
@@ -107,6 +120,50 @@ public class AirController {
             }
         }
         return inTrack;
+    }
+
+    public static AirPlane askForAirPlane() {
+        boolean exist = false;
+        AirPlane airPlane = null;
+
+        System.out.print("Enter the license plate of the airplane that you wish to manipulate:");
+        String airPlaneToManipulate = keyboard.next();
+        while(exist == false) {
+
+            exist = searchIfAirPlaneExsist(airPlaneToManipulate);
+            if(searchIfAirPlaneExsist(airPlaneToManipulate)) {
+                airPlane = catchObjectAirPlane(airPlaneToManipulate);
+            }
+
+            if(exist == false) {
+                System.out.println("This Air Plane doesn't exsist, try it again:");
+                airPlaneToManipulate = keyboard.next();
+            }
+        }
+
+        return airPlane;
+    }
+
+    public static boolean searchIfAirPlaneExsist(String airPlaneToManipulate) {
+        boolean exist = false;
+        for(AirPlane a : OnAirPlane) {
+            if(airPlaneToManipulate.equals(a.getLicensePlate())) {
+                exist = true;
+            }
+        }
+
+        return exist;
+    }
+
+    public static AirPlane catchObjectAirPlane(String airPlaneToManipulate) {
+        AirPlane airPlane = null;
+        for(AirPlane a : OnAirPlane) {
+            if(airPlaneToManipulate.equals(a.getLicensePlate())) {
+                airPlane = a;
+            }
+        }
+
+        return airPlane;
     }
 
 }
