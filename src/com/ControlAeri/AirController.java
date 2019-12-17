@@ -20,22 +20,46 @@ public class AirController {
 
             System.out.print("LicensePlate: ");
             String licensePlate = keyboard.next();
-
+//-------------------------------------------------------------------------------------------------------------------------------------\\
             System.out.print("Passenger Capacity: ");
-            int passengerCapacity = keyboard.nextInt();
+            int passengerCapacity;
 
+            while(keyboard.hasNextInt() == false) {
+                keyboard.nextLine();
+
+                System.out.print("Incorrect Data, try again. Passenger Capacity: ");
+            }
+
+            passengerCapacity = keyboard.nextInt();
+//-------------------------------------------------------------------------------------------------------------------------------------\\
             System.out.print("Crew: ");
-            int crew = keyboard.nextInt();
+            int crew;
 
+            while(keyboard.hasNextInt() == false) {
+                keyboard.nextLine();
+
+                System.out.print("Incorrect Data, try again. Crew: ");
+            }
+
+            crew = keyboard.nextInt();
+//-------------------------------------------------------------------------------------------------------------------------------------\\
             System.out.print("Destination: ");
             String destination = keyboard.next();
 
             if(concretAirPlane == 1) {
                 OnAirPlane.add(new CommercialAirPlane(brand, model, licensePlate, destination, passengerCapacity, crew));
             } else {
-
+//-------------------------------------------------------------------------------------------------------------------------------------\\
                 System.out.print("Max Range Shot: ");
-                int maxRangeShot = keyboard.nextInt();
+                int maxRangeShot;
+
+                while(keyboard.hasNextInt() == false) {
+                    keyboard.nextLine();
+
+                    System.out.print("Incorrect Data, try again. Max Range Shot: ");
+                }
+
+                maxRangeShot = keyboard.nextInt();
 //-------------------------------------------------------------------------------------------------------------------------------------\\
                 System.out.print("Enemy(true/false): ");
                 boolean enemy;
@@ -43,7 +67,7 @@ public class AirController {
                 while(keyboard.hasNextBoolean() == false) {
                     keyboard.nextLine();
 
-                    System.out.print("Enemy (true/false): ");
+                    System.out.print("Incorrect Data, try again. Enemy (true/false): ");
                 }
                 enemy = keyboard.nextBoolean();
 //--------------------------------------------------------------------------------------------------------------------------------------\\
@@ -52,8 +76,7 @@ public class AirController {
 
                 while(keyboard.hasNextBoolean() == false) {
                     keyboard.nextLine();
-
-                    System.out.print("Encrypted (true/false): ");
+                    System.out.print("Incorrect Data, try again. Encrypted (true/false): ");
                 }
                 encrypted = keyboard.nextBoolean();
 

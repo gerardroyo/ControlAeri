@@ -29,6 +29,7 @@ public class Menu {
         while (keyboard.hasNextInt() == false) {
             keyboard.nextLine();
 
+            System.out.println("Incorrect Data, try again. ");
             System.out.println("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
             System.out.println("█                                                             █");
             System.out.println("█                  1.Add AirPlane                             █");
@@ -84,6 +85,7 @@ public class Menu {
         while (keyboard.hasNextInt() == false) {
             keyboard.nextLine();
 
+            System.out.println("Incorrect Data, try again. ");
             System.out.println("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
             System.out.println("█                                                             █");
             System.out.println("█                  0.Turn ON motor                            █");
@@ -131,6 +133,7 @@ public class Menu {
         while (keyboard.hasNextInt() == false) {
             keyboard.nextLine();
 
+            System.out.println("Incorrect Data, try again. ");
             System.out.println("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
             System.out.println("█                                                             █");
             System.out.println("█                  1.Comercial AirPlane                       █");
