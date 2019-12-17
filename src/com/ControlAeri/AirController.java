@@ -11,7 +11,9 @@ public class AirController {
     private static Scanner keyboard = new Scanner(System.in);
 
     public static void addAirPlane(int concretAirPlane) {
+
         if(OnAirPlane.size() < 10) {
+
             System.out.print("Brand: ");
             String brand = keyboard.next();
 
@@ -95,5 +97,17 @@ public class AirController {
             counter++;
         }
     }
+
+    public static boolean somePlaneInTrack() {
+        boolean inTrack = false;
+
+        for(AirPlane a : OnAirPlane) {
+            if (a.getTrack() == true) {
+                inTrack = true;
+            }
+        }
+        return inTrack;
+    }
+
 }
 

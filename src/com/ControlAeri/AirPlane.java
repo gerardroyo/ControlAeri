@@ -12,6 +12,7 @@ public class AirPlane {
     private float route;
     private boolean undercarriage = true;
     private boolean motor = false;
+    private boolean track = true;
     private Coordinate coordinate;
 
     public AirPlane(String brand, String model, String licensePlate, String destination, int passengerCapacity, int crew) {
@@ -71,6 +72,10 @@ public class AirPlane {
     public boolean getMotor() { return motor; }
 
     public void setMotor(boolean motor) { this.motor = motor; }
+
+    public boolean getTrack() { return track; }
+
+    public void setTrack(boolean track) { this.track = track; }
 
     /*public boolean canviarMoviment() {
 

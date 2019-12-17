@@ -14,11 +14,14 @@ public class Main {
     }
 
     public static boolean switchMenuControl(int option, boolean exit) {
-
         switch(option) {
             case 1:
                 int concretAirPlane = Menu.menuConcretAirPlane();
-                AirController.addAirPlane(concretAirPlane);
+                if(!AirController.somePlaneInTrack()) {
+                    AirController.addAirPlane(concretAirPlane);
+                } else {
+                    System.out.println("Can't create a new AirPlane, because there are someone using the landing track");
+                }
                 break;
             case 2:
                 //manageAirPlane();
