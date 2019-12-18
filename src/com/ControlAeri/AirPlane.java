@@ -80,7 +80,7 @@ public class AirPlane {
     public void setTrack(boolean track) { this.track = track; }
 
 
-    public static void optionSelected(int option, AirPlane airPlane) {
+    public static void optionSelected(int option, AirPlane airPlane) {// backend of MenuManage | optionManage = option that user selected | airPlaneToManipulate = airplane selected
 
         switch(option) {
             case 0:
@@ -121,7 +121,7 @@ public class AirPlane {
 
     public static void TurnONMotor(AirPlane airPlane) {
 
-        if(airPlane.getCoordinate().getZ() > 0 && airPlane.getMotor() == true) {
+        if(airPlane.getCoordinate().getZ() > 0 && airPlane.getMotor() == true) {// check if airplane are or not in the landing track
             System.out.println("The motor is already on.");
         } else {
             System.out.println("Turning ON...");
@@ -132,16 +132,16 @@ public class AirPlane {
 
     public static void TurnOFFMotor(AirPlane airPlane) {
         Scanner keyboard = new Scanner(System.in);
-        if(airPlane.getCoordinate().getZ() > 0) {
+        if(airPlane.getCoordinate().getZ() > 0) { // check if airplane are or not in the landing track
             System.out.println("The AirPlane is on air, are you sure(true/false)?");
             while(keyboard.hasNextBoolean() == false) {
                 keyboard.nextLine();
                 System.out.println("Incorrect value, try again.");
                 System.out.println("The AirPlane is on air, are you sure(true/false)?");
             }
-            if(keyboard.nextBoolean()) {
+            if(keyboard.nextBoolean()) {// if user decide turn OFF the motor when the airplane is on air, it obviously crashes
                 System.out.println("The AirPlane fall down and get crashed... that was a bad idea.");
-                AirController.deleteAirPlane(airPlane);
+                AirController.deleteAirPlane(airPlane); // remove the airplane
                 //--------------------------------------------------------------------------------------------------------------------\\
             }
         } else {

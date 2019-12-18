@@ -26,7 +26,7 @@ public class Menu {
         System.out.println("█                                                             █");
         System.out.println("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
 
-        while (keyboard.hasNextInt() == false) {
+        while (keyboard.hasNextInt() == false) { //controlling if user insert some value that are incorrect
             keyboard.nextLine();
 
             System.out.println("Incorrect Data, try again. ");
@@ -118,7 +118,7 @@ public class Menu {
         return option;
     }
 
-    public static int menuConcretAirPlane() {
+    public static int menuConcretAirPlane() { //which air plane want to create
 
         int option;
 
@@ -130,7 +130,7 @@ public class Menu {
         System.out.println("█                                                             █");
         System.out.println("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
 
-        while (keyboard.hasNextInt() == false) {
+        while (keyboard.hasNextInt() == false) { //controlling if user insert some value that are incorrect
             keyboard.nextLine();
 
             System.out.println("Incorrect Data, try again. ");

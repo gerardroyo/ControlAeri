@@ -10,9 +10,9 @@ public class AirController {
     private int[] Track = new int[]{100, 120};
     private static Scanner keyboard = new Scanner(System.in);
 
-    public static void addAirPlane(int concretAirPlane) {
+    public static void addAirPlane(int concretAirPlane) { //add the airplane
 
-        if(OnAirPlane.size() < 10) {
+        if(OnAirPlane.size() < 10) {// controll if the max number of the airplanes that air controller can controll isn't bigger than 10
 
             System.out.print("Brand: ");
             String brand = keyboard.next();
@@ -82,7 +82,7 @@ public class AirController {
                 }
                 encrypted = keyboard.nextBoolean();
 
-                OnAirPlane.add(new BattleAirPlane(brand, model, licensePlate, destination, passengerCapacity, crew, maxRangeShot, enemy, encrypted));
+                OnAirPlane.add(new BattleAirPlane(brand, model, licensePlate, destination, passengerCapacity, crew, maxRangeShot, enemy, encrypted));// adding the user entries to the new object/airPlane in to the arraylist
             }
         } else {
             System.out.println("You have created the max Air Planes that the Air Controller can control at the same time.");
@@ -90,7 +90,7 @@ public class AirController {
 
     }
 
-    public static void deleteAirPlane(AirPlane airPlane) {
+    public static void deleteAirPlane(AirPlane airPlane) {// remove the airplane
         OnAirPlane.remove(airPlane);
     }
 
@@ -102,7 +102,7 @@ public class AirController {
         }
     }
 
-    public static boolean controlManager() {
+    public static boolean controlManager() {//check if there is already a plane created
         boolean empty = false;
 
         if(OnAirPlane.isEmpty()) {
@@ -122,7 +122,7 @@ public class AirController {
         return inTrack;
     }
 
-    public static AirPlane askForAirPlane() {
+    public static AirPlane askForAirPlane() { // ask to user which air plane wanna controll
         boolean exist = false;
         AirPlane airPlane = null;
 
@@ -130,9 +130,9 @@ public class AirController {
         String airPlaneToManipulate = keyboard.next();
         while(exist == false) {
 
-            exist = searchIfAirPlaneExsist(airPlaneToManipulate);
-            if(searchIfAirPlaneExsist(airPlaneToManipulate)) {
-                airPlane = catchObjectAirPlane(airPlaneToManipulate);
+            exist = searchIfAirPlaneExsist(airPlaneToManipulate);// check if the user entrie is correct or if the airplane exsist
+            if(exist) {
+                airPlane = catchObjectAirPlane(airPlaneToManipulate);// search the airplane to controll
             }
 
             if(exist == false) {
@@ -141,10 +141,10 @@ public class AirController {
             }
         }
 
-        return airPlane;
+        return airPlane; //return object/airplane that user wanna controll
     }
 
-    public static boolean searchIfAirPlaneExsist(String airPlaneToManipulate) {
+    public static boolean searchIfAirPlaneExsist(String airPlaneToManipulate) {// check if the user entrie is correct or if the airplane exsist
         boolean exist = false;
         for(AirPlane a : OnAirPlane) {
             if(airPlaneToManipulate.equals(a.getLicensePlate())) {

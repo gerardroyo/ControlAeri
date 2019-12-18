@@ -7,9 +7,9 @@ public class Main {
         boolean exit = false;
 
         while(exit == false) {
-            option = Menu.menuControl();
+            option = Menu.menuControl(); //ask to the user some option from 1st menu
 
-            exit = switchMenuControl(option, exit);
+            exit = switchMenuControl(option, exit); //backend from 1st menu | option = option that user selected | exit = boolean if user wanna exit from the Air Controller
         }
     }
 
@@ -18,19 +18,19 @@ public class Main {
         AirPlane airPlaneToManipulate;
 
         switch(option) {
-            case 1:
-                int concretAirPlane = Menu.menuConcretAirPlane();
-                if(!AirController.somePlaneInTrack()) {
-                    AirController.addAirPlane(concretAirPlane);
+            case 1: // if option is that the user want's add some airplene
+                int concretAirPlane = Menu.menuConcretAirPlane();// 1st ask which type of air plane want create | concretAirPlane = which type of airplain, comercial or battle
+                if(!AirController.somePlaneInTrack()) { //controll if some airplane are in the landing track
+                    AirController.addAirPlane(concretAirPlane); //adding air plane | concretAirPlane = which type of airplain, comercial or battle
                 } else {
                     System.out.println("Can't create a new AirPlane, because there are someone using the landing track");
                 }
                 break;
-            case 2:
-                if(!AirController.controlManager()){
-                    airPlaneToManipulate = AirController.askForAirPlane();
-                    int optionManage = Menu.menuManage();
-                    AirPlane.optionSelected(optionManage, airPlaneToManipulate);
+            case 2: // if option is that the user want's controll an specific air plane
+                if(!AirController.controlManager()){ //check if there is already a plane created
+                    airPlaneToManipulate = AirController.askForAirPlane();// ask to user which air plane wanna controll | airPlaneToManipulate = the airplane specific that user wanna controll
+                    int optionManage = Menu.menuManage();//ask to the user some option from MenuManage | optionManage = option that user selected
+                    AirPlane.optionSelected(optionManage, airPlaneToManipulate);// backend of MenuManage | optionManage = option that user selected | airPlaneToManipulate = airplane selected
                 } else {
                     System.out.println("There aren't AirPlanes created.");
                 }
@@ -38,7 +38,7 @@ public class Main {
 
                 break;
             case 3:
-                AirController.showAirSpace();
+                AirController.showAirSpace(); //show all airplanes and all their stats in the area that the air controller can catch
                 break;
             case 4:
                 //EncryptBattAirPlane();
