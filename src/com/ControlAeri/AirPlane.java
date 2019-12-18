@@ -10,12 +10,14 @@ public class AirPlane {
     private String destination;
     private int passengerCapacity;
     private int crew;
-    private float velocity = 0;
+    private int velocity = 0;
     private float route;
     private boolean undercarriage = true;
     private boolean motor = false;
     private boolean track = true;
     private Coordinate coordinate;
+
+    private static Scanner keyboard = new Scanner(System.in);
 
     public AirPlane(String brand, String model, String licensePlate, String destination, int passengerCapacity, int crew) {
         this.brand = brand;
@@ -55,9 +57,9 @@ public class AirPlane {
 
     public void setCrew(int crew) { this.crew = crew; }
 
-    public float getVelocity() { return velocity; }
+    public int getVelocity() { return velocity; }
 
-    public void setVelocity(float velocity) { this.velocity = velocity; }
+    public void setVelocity(int velocity) { this.velocity = velocity; }
 
     public float getRoute() { return route; }
 
@@ -92,7 +94,7 @@ public class AirPlane {
                 TurnOFFMotor(airPlane);
                 break;
             case 3:
-
+                accelerate(airPlane);
                 break;
             case 4:
 
@@ -119,10 +121,84 @@ public class AirPlane {
 
     }
 
+    public static void accelerate(AirPlane airPlane) {
+        if(airPlane.getCoordinate().getZ() == 0) { // if airplane are on the landing trak
+            if(airPlane.getMotor()) { // if the motor it's ON
+                int kmH = airPlane.getVelocity();
+                boolean possibleCrash = true;
+
+                while(possibleCrash) {
+                    kmH = askForKmH(airPlane);
+                    possibleCrash = controllVelocity(kmH, airPlane);
+                }
+            } else {
+                System.out.println("To accelerate, you need to turn ON the motor");
+            }
+        } else { // if airplane are on air
+            int kmH = airPlane.getVelocity();
+            if(airPlane.getVelocity() <= 300){//////////////////////////////////////////////////////////////////////////////////////////////
+                if(airPlane.getUndercarriage()) {
+                    boolean possibleCrash = true;
+                    while(possibleCrash) {
+                        kmH = askForKmH(airPlane);
+                        possibleCrash = controllVelocity(kmH, airPlane);
+                    }
+                } else {
+                    kmH = askForKmH(airPlane);
+                    airPlane.setVelocity(kmH);
+                }
+            } else {
+                kmH = askForKmH(airPlane);
+                airPlane.setVelocity(kmH);
+            }
+        }
+    }
+
+    public static int askForKmH( AirPlane airPlane){
+        int kmH;
+
+        System.out.println("How many Km/h you want? ");
+
+        while(!keyboard.hasNextInt()) {
+        keyboard.nextLine();
+
+            System.out.println("Incorrect value, you have to enter an enter number, try again.");
+            System.out.println("How many Km/h you want? ");
+
+        }
+        kmH = keyboard.nextInt();
+
+        return kmH;
+    }
+
+    public static boolean controllVelocity(int kmH, AirPlane airPlane) {
+        boolean possibleCrash = true;
+        if(keyboard.nextInt() > 300) {
+            System.out.println("The undercarriage is true, if you put more than 300Km/h the AirPlane gonna crash, are you sure to put more than 300Km/h (true/false)?");
+
+            while(!keyboard.hasNextBoolean()) {
+                keyboard.nextLine();
+
+                System.out.println("Incorrect value, try again.");
+                System.out.println("The undercarriage is true, if you put more than 300Km/h the AirPlane gonna crash, are you sure to put more than 300Km/h (true/false)?");
+            }
+            if(keyboard.nextBoolean()) {
+                System.out.println("The AirPlane crashed... that was a bad idea.");
+                AirController.deleteAirPlane(airPlane);
+                possibleCrash = false;
+            }
+        } else {
+            airPlane.setVelocity(kmH);
+            possibleCrash = false;
+        }
+
+        return possibleCrash;
+    }
+
     public static void TurnONMotor(AirPlane airPlane) {
 
         if(airPlane.getCoordinate().getZ() > 0 && airPlane.getMotor() == true) {// check if airplane are or not in the landing track
-            System.out.println("The motor is already on.");
+            System.out.println("The motor is already ON.");
         } else {
             System.out.println("Turning ON...");
             airPlane.setMotor(true);
@@ -145,9 +221,14 @@ public class AirPlane {
                 //--------------------------------------------------------------------------------------------------------------------\\
             }
         } else {
-            System.out.println("Turning ON...");
-            airPlane.setMotor(true);
-            System.out.println("Ready");
+            if(airPlane.getMotor()) {
+                System.out.println("Turning OFF...");
+                airPlane.setMotor(false);
+                System.out.println("Ready");
+            } else {
+                System.out.println("The motor is already OFF.");
+            }
+
         }
     }
 
