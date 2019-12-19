@@ -27,14 +27,21 @@ public class Main {
                 }
                 break;
             case 2: // if option is that the user want's controll an specific air plane
+                int optionManage = 1;
+                //boolean exit = false;
+
                 if(!AirController.controlManager()){ //check if there is already a plane created
                     airPlaneToManipulate = AirController.askForAirPlane();// ask to user which air plane wanna controll | airPlaneToManipulate = the airplane specific that user wanna controll
-                    int optionManage = Menu.menuManage();//ask to the user some option from MenuManage | optionManage = option that user selected
-                    AirPlane.optionSelected(optionManage, airPlaneToManipulate);// backend of MenuManage | optionManage = option that user selected | airPlaneToManipulate = airplane selected
+                    while(optionManage != 0) {
+                        optionManage = Menu.menuManage();//ask to the user some option from MenuManage | optionManage = option that user selected
+                        if(AirPlane.optionSelected(optionManage, airPlaneToManipulate)) {// backend of MenuManage | optionManage = option that user selected | airPlaneToManipulate = airplane selected
+                            optionManage = 0;
+                        }
+                    }
                 } else {
                     System.out.println("There aren't AirPlanes created.");
-                }
 
+                }
 
                 break;
             case 3:

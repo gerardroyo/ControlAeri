@@ -16,6 +16,7 @@ public class AirPlane {
     private boolean motor = false;
     private boolean track = true;
     private Coordinate coordinate;
+    private static boolean exit = false;
 
     private static Scanner keyboard = new Scanner(System.in);
 
@@ -82,7 +83,8 @@ public class AirPlane {
     public void setTrack(boolean track) { this.track = track; }
 
 
-    public static void optionSelected(int option, AirPlane airPlane) {// backend of MenuManage | optionManage = option that user selected | airPlaneToManipulate = airplane selected
+    public static boolean optionSelected(int option, AirPlane airPlane) {// backend of MenuManage | optionManage = option that user selected | airPlaneToManipulate = airplane selected
+
 
         switch(option) {
             case 0:
@@ -94,10 +96,10 @@ public class AirPlane {
                 TurnOFFMotor(airPlane);
                 break;
             case 3:
-                accelerate(airPlane);
+                speed(airPlane);
                 break;
             case 4:
-
+                undercarriage(airPlane);
                 break;
             case 5:
 
@@ -114,14 +116,58 @@ public class AirPlane {
             case 9:
 
                 break;
-            case 10:
-
-                break;
         }
 
+        return exit;
     }
 
-    public static void accelerate(AirPlane airPlane) {
+    public static void undercarriage(AirPlane airPlane) {
+        boolean landingGear = askForLandingGear(airPlane);
+
+        if(airPlane.getCoordinate().getZ() == 0) { // if airplane are on the landing trak
+            if(landingGear) {
+                System.out.println("The landing gear it's already out");
+                exit = false;
+            } else {
+                System.out.println("Can't remove the landing gear because this plane are in the landing trak");
+                exit = false;
+            }
+        } else if(airPlane.getCoordinate().getZ() > 500) {
+            if(!landingGear) {
+                System.out.println("If take out the landing gear at this height, the AirPlane gonna crash... Are you sure (true/false)? ");
+
+                while(!keyboard.hasNextBoolean()) {
+                    keyboard.nextLine();
+
+                    System.out.println("Incorrect value, try again.");
+                    System.out.println("If take out the landing gear at this height, the AirPlane gonna crash... Are you sure (true/false)? ");
+                }
+                if(keyboard.nextBoolean()) { // if the confirm from user are true
+                    System.out.println("The AirPlane crashed... that was a bad idea.");
+                    AirController.deleteAirPlane(airPlane); //delete AirPlane because got crashed
+                    exit = true; // dont show the menu again, cause we don't have the plane
+                }
+            } else {
+                System.out.println("The landing gear is already out");
+                exit = false;
+            }
+        }
+    }
+
+    public static boolean askForLandingGear( AirPlane airPlane){
+        System.out.println("Take out landing gear (true) or hide it (false)? ");
+
+        while(keyboard.hasNextBoolean()) {
+            keyboard.nextLine();
+
+            System.out.println("Incorrect value, try again.");
+            System.out.println("Take out landing gear (true) or hide it (false)? ");
+        }
+
+        return keyboard.nextBoolean();
+    }
+
+    public static void speed(AirPlane airPlane) {
         if(airPlane.getCoordinate().getZ() == 0) { // if airplane are on the landing trak
             if(airPlane.getMotor()) { // if the motor it's ON
                 int kmH = airPlane.getVelocity();
@@ -133,23 +179,26 @@ public class AirPlane {
                 }
             } else {
                 System.out.println("To accelerate, you need to turn ON the motor");
+                exit = false;
             }
         } else { // if airplane are on air
             int kmH = airPlane.getVelocity();
-            if(airPlane.getVelocity() <= 300){//////////////////////////////////////////////////////////////////////////////////////////////
+            if(airPlane.getVelocity() <= 300){ // if velocity less or same than 300
                 if(airPlane.getUndercarriage()) {
                     boolean possibleCrash = true;
-                    while(possibleCrash) {
-                        kmH = askForKmH(airPlane);
-                        possibleCrash = controllVelocity(kmH, airPlane);
+                    while(possibleCrash) { // loop for control the possibles crashes
+                        kmH = askForKmH(airPlane); // ask for km/h
+                        possibleCrash = controllVelocity(kmH, airPlane); // control the entrie from user
                     }
                 } else {
-                    kmH = askForKmH(airPlane);
+                    kmH = askForKmH(airPlane); // ask for km/h
                     airPlane.setVelocity(kmH);
+                    exit = false; // for dont exit from loop MenuManage
                 }
             } else {
                 kmH = askForKmH(airPlane);
                 airPlane.setVelocity(kmH);
+                exit = false; // for dont exit from loop MenuManage
             }
         }
     }
@@ -157,7 +206,7 @@ public class AirPlane {
     public static int askForKmH( AirPlane airPlane){
         int kmH;
 
-        System.out.println("How many Km/h you want? ");
+        System.out.print("How many Km/h you want? ");
 
         while(!keyboard.hasNextInt()) {
         keyboard.nextLine();
@@ -173,8 +222,8 @@ public class AirPlane {
 
     public static boolean controllVelocity(int kmH, AirPlane airPlane) {
         boolean possibleCrash = true;
-        if(keyboard.nextInt() > 300) {
-            System.out.println("The undercarriage is true, if you put more than 300Km/h the AirPlane gonna crash, are you sure to put more than 300Km/h (true/false)?");
+        if(kmH > 300 && airPlane.getUndercarriage()) { // if user entrie bigger than 300 and if the landing gear it's out
+            System.out.println("The undercarriage is out, if you put more than 300Km/h the AirPlane gonna crash, are you sure to put more than 300Km/h (true/false)?");
 
             while(!keyboard.hasNextBoolean()) {
                 keyboard.nextLine();
@@ -182,14 +231,15 @@ public class AirPlane {
                 System.out.println("Incorrect value, try again.");
                 System.out.println("The undercarriage is true, if you put more than 300Km/h the AirPlane gonna crash, are you sure to put more than 300Km/h (true/false)?");
             }
-            if(keyboard.nextBoolean()) {
+            if(keyboard.nextBoolean()) { // if the confirm from user are true
                 System.out.println("The AirPlane crashed... that was a bad idea.");
-                AirController.deleteAirPlane(airPlane);
-                possibleCrash = false;
+                AirController.deleteAirPlane(airPlane); //delete AirPlane because got crashed
+                possibleCrash = false; // finish the loop control
+                exit = true; // dont show the menu again, cause we don't have the plane
             }
         } else {
             airPlane.setVelocity(kmH);
-            possibleCrash = false;
+            possibleCrash = false; // finish the loop control
         }
 
         return possibleCrash;
@@ -199,10 +249,12 @@ public class AirPlane {
 
         if(airPlane.getCoordinate().getZ() > 0 && airPlane.getMotor() == true) {// check if airplane are or not in the landing track
             System.out.println("The motor is already ON.");
+            exit = false; // for dont exit from loop MenuManage
         } else {
             System.out.println("Turning ON...");
             airPlane.setMotor(true);
             System.out.println("Ready");
+            exit = false; // for dont exit from loop MenuManage
         }
     }
 
@@ -218,15 +270,18 @@ public class AirPlane {
             if(keyboard.nextBoolean()) {// if user decide turn OFF the motor when the airplane is on air, it obviously crashes
                 System.out.println("The AirPlane fall down and get crashed... that was a bad idea.");
                 AirController.deleteAirPlane(airPlane); // remove the airplane
-                //--------------------------------------------------------------------------------------------------------------------\\
+                exit = true;// for exit from loop MenuManage, because we already have not the AirPlane
             }
         } else {
             if(airPlane.getMotor()) {
                 System.out.println("Turning OFF...");
                 airPlane.setMotor(false);
+                airPlane.setVelocity(0);
                 System.out.println("Ready");
+                exit = false; // for dont exit from loop MenuManage
             } else {
                 System.out.println("The motor is already OFF.");
+                exit = false; // for dont exit from loop MenuManage
             }
 
         }
