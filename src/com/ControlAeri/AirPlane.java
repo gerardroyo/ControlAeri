@@ -102,7 +102,7 @@ public class AirPlane {
                 undercarriage(airPlane);
                 break;
             case 5:
-
+                goUpDown(airPlane);
                 break;
             case 6:
 
@@ -110,19 +110,54 @@ public class AirPlane {
             case 7:
 
                 break;
-            case 8:
-
-                break;
-            case 9:
-
-                break;
         }
 
         return exit;
     }
 
+    public static void goUpDown(AirPlane airPlane) {
+        int z;
+        if(airPlane.getVelocity() < 180) {
+            System.out.println("This AirPlane cant go up because needs to go 180Km/h or more");
+        } else if(airPlane.getCoordinate().getZ() > 1) {
+            upDownController(airPlane, askForZ());
+        }
+    }
+
+    public static void upDownController(AirPlane airPlane, int z) {
+        if(airPlane.getCoordinate().getZ() < 500) {
+            if(z >= 500 && airPlane.getUndercarriage()) {
+                System.out.println("If u want to up more than 500m and the landing gear is out the AirPlane gonna crash... Are you sure (true/false)? ");
+
+                while(!keyboard.hasNextBoolean()) {
+                    keyboard.nextLine();
+
+                    System.out.println("Incorrect value, try again.");
+                    System.out.println("If u want to up more than 500m and the landing gear is out the AirPlane gonna crash... Are you sure (true/false)? ");
+                }
+                if(keyboard.nextBoolean()) { // if the confirm from user are true
+                    System.out.println("The AirPlane crashed... that was a bad idea.");
+                    AirController.deleteAirPlane(airPlane); //delete AirPlane because got crashed
+                    exit = true; // dont show the menu again, cause we don't have the plane
+                }
+            }
+        }
+    }
+
+    public static int askForZ() {
+        System.out.println("Enter the meters that you want to up/down: ");
+
+        while(keyboard.hasNextInt()) {
+            keyboard.nextLine();
+
+            System.out.println("Incorrect value, try again.");
+            System.out.println("Enter the meters that you want to up/down: ");        }
+
+        return keyboard.nextInt();
+    }
+
     public static void undercarriage(AirPlane airPlane) {
-        boolean landingGear = askForLandingGear(airPlane);
+        boolean landingGear = askForLandingGear();
 
         if(airPlane.getCoordinate().getZ() == 0) { // if airplane are on the landing trak
             if(landingGear) {
@@ -132,8 +167,8 @@ public class AirPlane {
                 System.out.println("Can't remove the landing gear because this plane are in the landing trak");
                 exit = false;
             }
-        } else if(airPlane.getCoordinate().getZ() > 500) {
-            if(!landingGear) {
+        } else if(airPlane.getCoordinate().getZ() > 500) { // if the AirPlane is more than 500m
+            if(!landingGear) {// if the entrie from user are false
                 System.out.println("If take out the landing gear at this height, the AirPlane gonna crash... Are you sure (true/false)? ");
 
                 while(!keyboard.hasNextBoolean()) {
@@ -154,7 +189,7 @@ public class AirPlane {
         }
     }
 
-    public static boolean askForLandingGear( AirPlane airPlane){
+    public static boolean askForLandingGear(){
         System.out.println("Take out landing gear (true) or hide it (false)? ");
 
         while(keyboard.hasNextBoolean()) {
@@ -203,7 +238,7 @@ public class AirPlane {
         }
     }
 
-    public static int askForKmH( AirPlane airPlane){
+    public static int askForKmH(AirPlane airPlane){
         int kmH;
 
         System.out.print("How many Km/h you want? ");

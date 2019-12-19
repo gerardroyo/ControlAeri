@@ -64,19 +64,15 @@ public class Menu {
         System.out.println("█                                                             █");
         System.out.println("█                  2. Turn OFF motor                          █");
         System.out.println("█                                                             █");
-        System.out.println("█                  3. Speed                                   █");
+        System.out.println("█                  3. Modify Speed                            █");
         System.out.println("█                                                             █");
         System.out.println("█                  4. Climb/Go down landing gear              █");
         System.out.println("█                                                             █");
-        System.out.println("█                  5. Go Up                                   █");
+        System.out.println("█                  5. Go Up/Down                              █");
         System.out.println("█                                                             █");
-        System.out.println("█                  6. Go down                                 █");
+        System.out.println("█                  6. Position                                █");
         System.out.println("█                                                             █");
-        System.out.println("█                  7. Set resource                            █");
-        System.out.println("█                                                             █");
-        System.out.println("█                  8. Position                                █");
-        System.out.println("█                                                             █");
-        System.out.println("█                  9. Shoot                                   █");
+        System.out.println("█                  7. Shoot                                   █");
         System.out.println("█                                                             █");
         System.out.println("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
 
@@ -96,15 +92,13 @@ public class Menu {
             System.out.println("█                                                             █");
             System.out.println("█                  4. Climb/Go down landing gear              █");
             System.out.println("█                                                             █");
-            System.out.println("█                  5. Go Up                                   █");
+            System.out.println("█                  5. Go Up/Down                              █");
             System.out.println("█                                                             █");
-            System.out.println("█                  6. Go down                                 █");
+            System.out.println("█                  6. Set resource                            █");
             System.out.println("█                                                             █");
-            System.out.println("█                  7. Set resource                            █");
+            System.out.println("█                  7. Position                                █");
             System.out.println("█                                                             █");
-            System.out.println("█                  8. Position                                █");
-            System.out.println("█                                                             █");
-            System.out.println("█                  9. Shoot                                   █");
+            System.out.println("█                  8. Shoot                                   █");
             System.out.println("█                                                             █");
             System.out.println("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
         }
