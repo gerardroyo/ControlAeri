@@ -111,6 +111,16 @@ public class AirController {
         return empty;
     }
 
+    public static void deleteColliderAirPlanes() {
+        boolean inTrack = false;
+
+        for(AirPlane a : OnAirPlane) {
+            if (a.getTrack() == true) {
+                OnAirPlane.remove(a);
+            }
+        }
+    }
+
     public static boolean somePlaneInTrack() {
         boolean inTrack = false;
 

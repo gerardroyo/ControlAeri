@@ -141,7 +141,7 @@ public class AirPlane {
                     exit = true; // dont show the menu again, cause we don't have the plane
                 }
             } else if(z <= 0) {
-                careZ0(airPlane);
+                careZ0(airPlane, z);
             } else {
                 System.out.println("Changing height...");
                 airPlane.getCoordinate().setZ(z);
@@ -149,21 +149,74 @@ public class AirPlane {
                 exit = false;
             }
         } else {
-            System.out.println("Changing height...");
-            airPlane.getCoordinate().setZ(z);
-            System.out.println("Done");
-            exit = false;
+            if(z <= 0) {
+                careZ0(airPlane, z);
+            } else {
+                System.out.println("Changing height...");
+                airPlane.getCoordinate().setZ(z);
+                System.out.println("Done");
+                exit = false;
+            }
         }
     }
 
-    public static void careZ0(AirPlane airPlane) {
-        System.out.println("Are you sure about that? the AirPlane gonna crash versus floor.. (true/false) ");
+    public static void careZ0(AirPlane airPlane, int z) {
+        if(z == 0) {
+            if(airPlane.getCoordinate().getX() == 100 && (airPlane.getCoordinate().getY() >= 100 && airPlane.getCoordinate().getY() <= 120)) {
+                if(airPlane.getVelocity() <= 200) {
+                    if(airPlane.getUndercarriage()) {
+                        if(!AirController.somePlaneInTrack()) {
+                            landingAirPlane(airPlane);
+                        } else {
+                            crashColliderController("The landing track is in use. The manipulated AirPlane and the one on the landing track will collide, are you sure (true / false)? ", airPlane);
+                        }
+                    } else {
+                        crashController("To land the landing gear must be out, but it isn't, the AirPlane will crash, are you sure (true / false)? ", airPlane);
+                    }
+                } else {
+                    crashController("The AirPlane is going faster than is should (recomendation <= 200Km/h), the AirPlane will crash, are you sure (true/false)? ", airPlane);
+                }
+            } else {
+                crashController("The AirPlane isn't alineated with the Landing Track (x = 100, y between 100-120), the AirPlane will crash, are you sure (true/false)? ", airPlane);
+            }
+        } else {
+            crashController("Are you sure about that? the AirPlane will crash versus floor.. (true/false) ", airPlane);
+        }
+    }
+
+    public static void landingAirPlane(AirPlane airPlane) {
+        System.out.println("The AirPlane is landing...");
+        System.out.println("Entering the garage...");
+        AirController.deleteAirPlane(airPlane);
+        System.out.println("Done");
+    }
+
+    public static void crashColliderController(String warning, AirPlane airPlane) {
+        System.out.println(warning);
 
         while(!keyboard.hasNextBoolean()) {
             keyboard.nextLine();
 
             System.out.println("Incorrect value, try again.");
-            System.out.println("Are you sure about that? the AirPlane gonna crash versus floor.. (true/false) ");
+            System.out.println(warning);
+        }
+        if(keyboard.nextBoolean()) { // if the confirm from user are true
+            System.out.println("Both AirPlane crashed... that was a bad idea.");
+            AirController.deleteAirPlane(airPlane); //delete AirPlane because got crashed
+            AirController.deleteColliderAirPlanes(); //delete AirPlane in the landing trak because got crashed by other AirPlane trying landing
+
+            exit = true; // dont show the menu again, cause we don't have the plane
+        }
+    }
+
+    public static void crashController(String warning, AirPlane airPlane) {
+        System.out.println(warning);
+
+        while(!keyboard.hasNextBoolean()) {
+            keyboard.nextLine();
+
+            System.out.println("Incorrect value, try again.");
+            System.out.println(warning);
         }
         if(keyboard.nextBoolean()) { // if the confirm from user are true
             System.out.println("The AirPlane crashed... that was a bad idea.");
