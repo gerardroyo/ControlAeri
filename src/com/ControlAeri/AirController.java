@@ -20,8 +20,19 @@ public class AirController {
             System.out.print("Model: ");
             String model = keyboard.next();
 
-            System.out.print("LicensePlate: ");
-            String licensePlate = keyboard.next();
+            boolean noRepeatLicensePlate = false;
+            String licensePlate = "";
+            while(!noRepeatLicensePlate) {
+                System.out.print("LicensePlate: ");
+                licensePlate = keyboard.next();
+                noRepeatLicensePlate = true;
+                for(AirPlane a : OnAirPlane) {
+                    if (a.getLicensePlate().equals(licensePlate)) {
+                        noRepeatLicensePlate = false;
+                        System.out.println("This License Plate already exsist. ");
+                    }
+                }
+            }
 //-------------------------------------------------------------------------------------------------------------------------------------\\
             System.out.print("Passenger Capacity: ");
             int passengerCapacity;
@@ -112,12 +123,17 @@ public class AirController {
     }
 
     public static void deleteColliderAirPlanes() {
-        boolean inTrack = false;
+        boolean delete = false;
+        AirPlane airPlane = null;
 
         for(AirPlane a : OnAirPlane) {
-            if (a.getTrack() == true) {
-                OnAirPlane.remove(a);
+            if (a.getCoordinate().getZ() == 0) {
+                airPlane = a;
+                delete = true;
             }
+        }
+        if(delete) {
+            OnAirPlane.remove(airPlane);
         }
     }
 
@@ -125,7 +141,7 @@ public class AirController {
         boolean inTrack = false;
 
         for(AirPlane a : OnAirPlane) {
-            if (a.getTrack() == true) {
+            if (a.getCoordinate().getZ() == 0) {
                 inTrack = true;
             }
         }

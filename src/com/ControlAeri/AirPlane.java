@@ -105,7 +105,7 @@ public class AirPlane {
                 goUpDown(airPlane);
                 break;
             case 6:
-
+                position(airPlane);
                 break;
             case 7:
 
@@ -113,6 +113,24 @@ public class AirPlane {
         }
 
         return exit;
+    }
+
+    public static void position(AirPlane airPlane) {
+        int pos;
+
+        if(airPlane.getCoordinate().getZ() == 0) {
+            System.out.println("To modify the position, the AirPlane must be in the air");
+        } else  {
+            pos = askForPosition();
+            if() {
+
+            }
+        }
+    }
+
+    public static int askForPosition() {
+
+        return
     }
 
     public static void goUpDown(AirPlane airPlane) {// FALTA CONTROLAR QUE EL AVIO POGUI ATERRITZAR SEMPRE I QUAN ESTIGUI = A LA X I Y DE LA PISTA I NO HI HAGIN NINGUN AVIO A LA MATEIXA PISTA
