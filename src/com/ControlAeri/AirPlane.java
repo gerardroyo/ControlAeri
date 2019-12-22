@@ -116,21 +116,40 @@ public class AirPlane {
     }
 
     public static void position(AirPlane airPlane) {
-        int pos;
+        int posX= askForPositionX();;
+        int posY= askForPositionY();;
 
         if(airPlane.getCoordinate().getZ() == 0) {
             System.out.println("To modify the position, the AirPlane must be in the air");
         } else  {
-            pos = askForPosition();
-            if() {
-
-            }
+            AirController.positionControl(posX, posY, airPlane);
         }
     }
 
-    public static int askForPosition() {
+    public static int askForPositionY() {
+        System.out.println("Enter the meters X: ");
 
-        return
+        while(!keyboard.hasNextInt()) {
+            keyboard.nextLine();
+
+            System.out.println("Incorrect value, try again.");
+            System.out.println("Enter the meters X: ");
+        }
+
+        return keyboard.nextInt();
+    }
+
+    public static int askForPositionX() {
+        System.out.println("Enter the meters X: ");
+
+        while(!keyboard.hasNextInt()) {
+            keyboard.nextLine();
+
+            System.out.println("Incorrect value, try again.");
+            System.out.println("Enter the meters X: ");
+        }
+
+        return keyboard.nextInt();
     }
 
     public static void goUpDown(AirPlane airPlane) {// FALTA CONTROLAR QUE EL AVIO POGUI ATERRITZAR SEMPRE I QUAN ESTIGUI = A LA X I Y DE LA PISTA I NO HI HAGIN NINGUN AVIO A LA MATEIXA PISTA

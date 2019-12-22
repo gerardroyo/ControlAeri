@@ -101,6 +101,22 @@ public class AirController {
 
     }
 
+    public static void positionControl(int posX, int posY, AirPlane airPlane) {
+        boolean toFalse = true;
+
+        for(int i = 0; i < OnAirPlane.size(); i++) {
+            if(posX == OnAirPlane.get(i).getCoordinate().getX() && posY == OnAirPlane.get(i).getCoordinate().getY()) {
+                AirPlane.crashColliderController("If move to that position the AirPlane will collide versus other AirPlane, are you sure (true / false)? ", airPlane);
+                i = OnAirPlane.size();
+                toFalse = false;
+            }
+        }
+        if(toFalse) {
+            airPlane.getCoordinate().setX(posX);
+            airPlane.getCoordinate().setY(posY);
+        }
+    }
+
     public static void deleteAirPlane(AirPlane airPlane) {// remove the airplane
         OnAirPlane.remove(airPlane);
     }
