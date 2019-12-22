@@ -76,6 +76,7 @@ public class Menu {
         System.out.println("█                                                             █");
         System.out.println("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
 
+
         while (keyboard.hasNextInt() == false) {
             keyboard.nextLine();
 

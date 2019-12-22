@@ -104,16 +104,20 @@ public class AirController {
     public static void positionControl(int posX, int posY, AirPlane airPlane) {
         boolean toFalse = true;
 
-        for(int i = 0; i < OnAirPlane.size(); i++) {
-            if(posX == OnAirPlane.get(i).getCoordinate().getX() && posY == OnAirPlane.get(i).getCoordinate().getY()) {
-                AirPlane.crashColliderController("If move to that position the AirPlane will collide versus other AirPlane, are you sure (true / false)? ", airPlane);
-                i = OnAirPlane.size();
-                toFalse = false;
+        if(posX >= 1000 || posY >= 1000) {
+            AirPlane.crashController("The AirPlane will exit from the max range that control tower can control, are you sure? (true/false) ", airPlane);
+        } else {
+            for(int i = 0; i < OnAirPlane.size(); i++) {
+                if(posX == OnAirPlane.get(i).getCoordinate().getX() && posY == OnAirPlane.get(i).getCoordinate().getY()) {
+                    AirPlane.crashColliderController("If move to that position the AirPlane will collide versus other AirPlane, are you sure (true / false)? ", airPlane);
+                    i = OnAirPlane.size();
+                    toFalse = false;
+                }
             }
-        }
-        if(toFalse) {
-            airPlane.getCoordinate().setX(posX);
-            airPlane.getCoordinate().setY(posY);
+            if(toFalse) {
+                airPlane.getCoordinate().setX(posX);
+                airPlane.getCoordinate().setY(posY);
+            }
         }
     }
 

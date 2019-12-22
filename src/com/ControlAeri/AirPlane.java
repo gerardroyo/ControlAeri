@@ -85,7 +85,6 @@ public class AirPlane {
 
     public static boolean optionSelected(int option, AirPlane airPlane) {// backend of MenuManage | optionManage = option that user selected | airPlaneToManipulate = airplane selected
 
-
         switch(option) {
             case 0:
                 break;
@@ -113,6 +112,11 @@ public class AirPlane {
         }
 
         return exit;
+    }
+
+    public static void showStats(AirPlane airPlane) {
+        System.out.println("");////////////////////////////////// falta controlar si l'avio s'enva del espai aeri per la posició
+        System.out.println(airPlane.toString());
     }
 
     public static void position(AirPlane airPlane) {
@@ -484,7 +488,9 @@ public class AirPlane {
                 ", passengerCapacity = " + passengerCapacity +
                 ", crew = " + crew +
                 ", velocity = " + velocity +
-                ", route = " + route +
+                ", X = " + coordinate.getX() +
+                ", Y = " + coordinate.getY() +
+                ", Z = " + coordinate.getZ() +
                 ", undercarriage = " + undercarriage +
                 ", motor = " + motor;
     }

@@ -43,7 +43,7 @@ public class BattleAirPlane extends AirPlane {
     @Override
     public String toString() {
         return "(Battle) " + super.toString() +
-                ", Missiles = " + Missiles +
+                ", Missiles = " + numMissiles +
                 ", MaxRangeShot = " + MaxRangeShot +
                 ", Enemy = " + Enemy +
                 ", Encrypted = " + Encrypted + ".";
