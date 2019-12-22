@@ -45,6 +45,7 @@ public class Menu {
             System.out.println("█                  5.Decrypt Battle AirPlanes                 █");
             System.out.println("█                                                             █");
             System.out.println("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
+
         }
 
         option = keyboard.nextInt();
@@ -52,7 +53,7 @@ public class Menu {
         return option;
     }
 
-    public static int menuManage() {
+    public static int menuManageBattle() {
 
         int option;
 
@@ -95,11 +96,60 @@ public class Menu {
             System.out.println("█                                                             █");
             System.out.println("█                  5. Go Up/Down                              █");
             System.out.println("█                                                             █");
+            System.out.println("█                  6. Position                                █");
+            System.out.println("█                                                             █");
+            System.out.println("█                  7. Shoot                                   █");
+            System.out.println("█                                                             █");
+            System.out.println("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
+        }
+
+        option = keyboard.nextInt();
+
+        return option;
+    }
+
+    public static int menuManageCommercial() {
+
+        int option;
+
+        System.out.println("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
+        System.out.println("█                                                             █");
+        System.out.println("█                  0. Exit                                    █");
+        System.out.println("█                                                             █");
+        System.out.println("█                  1. Turn ON motor                           █");
+        System.out.println("█                                                             █");
+        System.out.println("█                  2. Turn OFF motor                          █");
+        System.out.println("█                                                             █");
+        System.out.println("█                  3. Modify Speed                            █");
+        System.out.println("█                                                             █");
+        System.out.println("█                  4. Climb/Go down landing gear              █");
+        System.out.println("█                                                             █");
+        System.out.println("█                  5. Go Up/Down                              █");
+        System.out.println("█                                                             █");
+        System.out.println("█                  6. Position                                █");
+        System.out.println("█                                                             █");
+        System.out.println("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
+
+
+        while (keyboard.hasNextInt() == false) {
+            keyboard.nextLine();
+
+            System.out.println("Incorrect Data, try again. ");
+            System.out.println("▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
+            System.out.println("█                                                             █");
+            System.out.println("█                  0. Exit                                    █");
+            System.out.println("█                                                             █");
+            System.out.println("█                  1. Turn ON motor                           █");
+            System.out.println("█                                                             █");
+            System.out.println("█                  2. Turn OFF motor                          █");
+            System.out.println("█                                                             █");
+            System.out.println("█                  3. Modify Speed                            █");
+            System.out.println("█                                                             █");
+            System.out.println("█                  4. Climb/Go down landing gear              █");
+            System.out.println("█                                                             █");
+            System.out.println("█                  5. Go Up/Down                              █");
+            System.out.println("█                                                             █");
             System.out.println("█                  6. Set resource                            █");
-            System.out.println("█                                                             █");
-            System.out.println("█                  7. Position                                █");
-            System.out.println("█                                                             █");
-            System.out.println("█                  8. Shoot                                   █");
             System.out.println("█                                                             █");
             System.out.println("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
         }

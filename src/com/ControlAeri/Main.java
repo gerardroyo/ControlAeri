@@ -34,7 +34,12 @@ public class Main {
                     airPlaneToManipulate = AirController.askForAirPlane();// ask to user which air plane wanna controll | airPlaneToManipulate = the airplane specific that user wanna controll
                     while(optionManage != 0) {
                         AirPlane.showStats(airPlaneToManipulate);
-                        optionManage = Menu.menuManage();//ask to the user some option from MenuManage | optionManage = option that user selected
+                        if(airPlaneToManipulate.getAirPlaneType() == 1) {
+                            optionManage = Menu.menuManageCommercial();//ask to the user some option from MenuManage | optionManage = option that user selected
+                        } else {
+                            optionManage = Menu.menuManageBattle();//ask to the user some option from MenuManage | optionManage = option that user selected
+                        }
+
                         if(AirPlane.optionSelected(optionManage, airPlaneToManipulate)) {// backend of MenuManage | optionManage = option that user selected | airPlaneToManipulate = airplane selected
                             optionManage = 0;
                         }

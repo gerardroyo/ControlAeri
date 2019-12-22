@@ -17,10 +17,11 @@ public class AirPlane {
     private boolean track = true;
     private Coordinate coordinate;
     private static boolean exit = false;
+    private int airPlaneType;
 
     private static Scanner keyboard = new Scanner(System.in);
 
-    public AirPlane(String brand, String model, String licensePlate, String destination, int passengerCapacity, int crew) {
+    public AirPlane(String brand, String model, String licensePlate, String destination, int passengerCapacity, int crew, int airPlaneType) {
         this.brand = brand;
         this.model = model;
         this.licensePlate = licensePlate;
@@ -28,6 +29,7 @@ public class AirPlane {
         this.destination = destination;
         this.crew = crew;
         this.coordinate = new Coordinate(100, 100, 0);
+        this.airPlaneType = airPlaneType;
     }
 
     public String getBrand() { return brand; }
@@ -82,6 +84,9 @@ public class AirPlane {
 
     public void setTrack(boolean track) { this.track = track; }
 
+    public int getAirPlaneType() { return airPlaneType; }
+
+    public void setAirPlaneType(int airPlaneType) { this.airPlaneType = airPlaneType; }
 
     public static boolean optionSelected(int option, AirPlane airPlane) {// backend of MenuManage | optionManage = option that user selected | airPlaneToManipulate = airplane selected
 
@@ -107,11 +112,22 @@ public class AirPlane {
                 position(airPlane);
                 break;
             case 7:
-
+                if(airPlane.getAirPlaneType() == 1) {
+                } else {
+                    shoot(airPlane);
+                }
                 break;
         }
 
         return exit;
+    }
+
+    public static void shoot(AirPlane airPlane) {
+        AirController.enemyControl(airPlane);
+    }
+
+    public static void showWarning(CommercialAirPlane airPlane) {
+        System.out.print(airPlane.getLicensePlate() + " | ");
     }
 
     public static void showStats(AirPlane airPlane) {
