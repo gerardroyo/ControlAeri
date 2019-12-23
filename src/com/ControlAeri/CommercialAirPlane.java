@@ -6,8 +6,8 @@ public class CommercialAirPlane extends AirPlane {
     private boolean enemy;
     private boolean encrypted;
 
-    public CommercialAirPlane(String brand, String model, String licensePlate, String destination, int passengerCapacity, int crew, int airPlaneType, boolean enemy, boolean encrypted) {
-        super(brand, model, licensePlate, destination, passengerCapacity, crew, airPlaneType);
+    public CommercialAirPlane(String brand, String model, String licensePlate, String destination, int passengerCapacity, int crew, int airPlaneType, String origin, boolean enemy, boolean encrypted) {
+        super(brand, model, licensePlate, destination, passengerCapacity, crew, airPlaneType, origin);
         this.enemy = enemy;
         this.encrypted = encrypted;
     }

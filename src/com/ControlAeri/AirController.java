@@ -1,16 +1,15 @@
 package com.ControlAeri;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AirController {
 
     private static ArrayList<AirPlane> OnAirPlane = new ArrayList<AirPlane>();
-    private int[] AirSpace = new int []{1000, 1000};
-    private int[] Track = new int[]{100, 120};
     private static Scanner keyboard = new Scanner(System.in);
 
-    public static void addAirPlane(int concretAirPlane) { //add the airplane
+    public static void addAirPlane(int concretAirPlane) throws UnsupportedEncodingException { //add the airplane
 
         int type;
 
@@ -88,8 +87,18 @@ public class AirController {
                 }
                 encrypted = keyboard.nextBoolean();
 
-                OnAirPlane.add(new CommercialAirPlane(brand, model, licensePlate, destination, passengerCapacity, crew, type, enemy, encrypted));
+                String origin = "BCN";
+                if(encrypted) {
+
+                    brand = Encrypt.Encrypt(brand);
+                    model = Encrypt.Encrypt(model);
+                    origin = Encrypt.Encrypt(origin);
+                    destination = Encrypt.Encrypt(destination);
+                }
+
+                OnAirPlane.add(new CommercialAirPlane(brand, model, licensePlate, destination, passengerCapacity, crew, type, origin, enemy, encrypted));
             } else {
+                String origin = "BCN";
                 type = 2;
 //-------------------------------------------------------------------------------------------------------------------------------------\\
                 System.out.print("Max Range Shot: ");
@@ -103,7 +112,7 @@ public class AirController {
 
                 maxRangeShot = keyboard.nextInt();
 
-                OnAirPlane.add(new BattleAirPlane(brand, model, licensePlate, destination, passengerCapacity, crew, type, maxRangeShot));// adding the user entries to the new object/airPlane in to the arraylist
+                OnAirPlane.add(new BattleAirPlane(brand, model, licensePlate, destination, passengerCapacity, crew, type, maxRangeShot, origin));// adding the user entries to the new object/airPlane in to the arraylist
             }
         } else {
             System.out.println("You have created the max Air Planes that the Air Controller can control at the same time.");
@@ -111,15 +120,42 @@ public class AirController {
 
     }
 
-    public static void encrypt() {
+    public static void decrypt(AirPlane airPlane1) throws UnsupportedEncodingException {
         for(AirPlane a:OnAirPlane) {
-            if(a instanceof CommercialAirPlane) {
-                CommercialAirPlane airPlane = (CommercialAirPlane) a;
-                if(airPlane.getEncrypted()) {
-                    Encrypt.encrypt(airPlane);
+            if(airPlane1.getLicensePlate().equals(a.getLicensePlate())) {
+                if(a instanceof CommercialAirPlane) {
+                    CommercialAirPlane airPlane = (CommercialAirPlane) a;
+                    if(airPlane.getEncrypted()) {
+                        a.setBrand(Encrypt.Decrypt(a.getBrand()));
+                        a.setModel(Encrypt.Decrypt(a.getModel()));
+                        a.setOrigin(Encrypt.Decrypt(a.getOrigin()));
+                        a.setDestination(Encrypt.Decrypt(a.getDestination()));
+                        ((CommercialAirPlane) a).setEncrypted(false);
+                    }
                 }
             }
         }
+        System.out.println("Decrypting...");
+        System.out.println("Done.");
+    }
+
+    public static void encrypt(AirPlane airPlane1) throws UnsupportedEncodingException {
+        for(AirPlane a:OnAirPlane) {
+            if(airPlane1.getLicensePlate().equals(a.getLicensePlate())) {
+                if(a instanceof CommercialAirPlane) {
+                    CommercialAirPlane airPlane = (CommercialAirPlane) a;
+                    if(airPlane.getEncrypted()) {
+                        a.setBrand(Encrypt.Encrypt(a.getBrand()));
+                        a.setModel(Encrypt.Encrypt(a.getModel()));
+                        a.setOrigin(Encrypt.Encrypt(a.getOrigin()));
+                        a.setDestination(Encrypt.Encrypt(a.getDestination()));
+                        ((CommercialAirPlane) a).setEncrypted(true);
+                    }
+                }
+            }
+        }
+        System.out.println("Encrypting...");
+        System.out.println("Done.");
     }
 
     public static void enemyControl(AirPlane airPlane) {
@@ -185,38 +221,41 @@ public class AirController {
     }
 
     public static void showEnemies(AirPlane airPlane) {
-        BattleAirPlane airPlaneBattle = (BattleAirPlane) airPlane;
-        int posXshoot = airPlaneBattle.getCoordinate().getX() + airPlaneBattle.getMaxRangeShot();
-        int posX_shoot = airPlaneBattle.getCoordinate().getX() - 100;
+        if(airPlane instanceof BattleAirPlane) {
+            BattleAirPlane airPlaneBattle = (BattleAirPlane) airPlane;
+            int posXshoot = airPlaneBattle.getCoordinate().getX() + airPlaneBattle.getMaxRangeShot();
+            int posX_shoot = airPlaneBattle.getCoordinate().getX() - 100;
 
-        int posYshoot = airPlaneBattle.getCoordinate().getY() + 100;
-        int posY_shoot = airPlaneBattle.getCoordinate().getY() - 100;
+            int posYshoot = airPlaneBattle.getCoordinate().getY() + 100;
+            int posY_shoot = airPlaneBattle.getCoordinate().getY() - 100;
 
-        boolean enemyFounded = false;
+            boolean enemyFounded = false;
 
-        System.out.print("AirPlane(" + airPlaneBattle.getLicensePlate() + ") Enemy detected: ");
+            System.out.print("AirPlane(" + airPlaneBattle.getLicensePlate() + ") Enemy detected: ");
 
-        for (AirPlane a : OnAirPlane) {
-            if (a instanceof CommercialAirPlane) {
-                CommercialAirPlane b = (CommercialAirPlane) a;
-                if ((b.getCoordinate().getY() <= posYshoot && b.getCoordinate().getY() >= posY_shoot) && (b.getCoordinate().getX() == airPlaneBattle.getCoordinate().getX())) {
-                    if (b.getEnemy() == true) {
-                        enemyFounded = true;
-                        AirPlane.showWarning(b);
-                    }
-                } else if ((a.getCoordinate().getX() <= posXshoot && a.getCoordinate().getX() >= posX_shoot) && (a.getCoordinate().getY() == airPlaneBattle.getCoordinate().getY())) {
-                    if (b.getEnemy() == true) {
-                        enemyFounded = true;
-                        AirPlane.showWarning(b);
-                    }
-                }/* else {
+            for (AirPlane a : OnAirPlane) {
+                if (a instanceof CommercialAirPlane) {
+                    CommercialAirPlane b = (CommercialAirPlane) a;
+                    if ((b.getCoordinate().getY() <= posYshoot && b.getCoordinate().getY() >= posY_shoot) && (b.getCoordinate().getX() == airPlaneBattle.getCoordinate().getX())) {
+                        if (b.getEnemy() == true) {
+                            enemyFounded = true;
+                            AirPlane.showWarning(b);
+                        }
+                    } else if ((a.getCoordinate().getX() <= posXshoot && a.getCoordinate().getX() >= posX_shoot) && (a.getCoordinate().getY() == airPlaneBattle.getCoordinate().getY())) {
+                        if (b.getEnemy() == true) {
+                            enemyFounded = true;
+                            AirPlane.showWarning(b);
+                        }
+                    }/* else {
                     System.out.println("No enemies founded");
                 }*/
+                }
+            }
+            if(!enemyFounded) {
+                System.out.println("No enemies founded");
             }
         }
-        if(!enemyFounded) {
-            System.out.println("No enemies founded");
-        }
+
     }
 
     public static void positionControl(int posX, int posY, AirPlane airPlane) {

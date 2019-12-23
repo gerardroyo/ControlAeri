@@ -8,8 +8,8 @@ public class BattleAirPlane extends AirPlane {
     private int MaxRangeShot;
     private  int NumMissiles = 4;
 
-    public BattleAirPlane(String brand, String model, String licensePlate, String destination, int passengerCapacity, int MaxRangeShot, int crew, int airPlaneType) {
-        super(brand, model, licensePlate, destination, passengerCapacity, crew, airPlaneType);
+    public BattleAirPlane(String brand, String model, String licensePlate, String destination, int passengerCapacity, int MaxRangeShot, int crew, int airPlaneType, String origin) {
+        super(brand, model, licensePlate, destination, passengerCapacity, crew, airPlaneType, origin);
         this.MaxRangeShot = MaxRangeShot;
         for(int i = 0; i < NumMissiles; i++) {
             Missiles.add(new Missile(100));

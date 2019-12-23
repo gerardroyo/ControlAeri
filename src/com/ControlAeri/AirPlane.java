@@ -21,7 +21,7 @@ public class AirPlane {
 
     private static Scanner keyboard = new Scanner(System.in);
 
-    public AirPlane(String brand, String model, String licensePlate, String destination, int passengerCapacity, int crew, int airPlaneType) {
+    public AirPlane(String brand, String model, String licensePlate, String destination, int passengerCapacity, int crew, int airPlaneType, String origin) {
         this.brand = brand;
         this.model = model;
         this.licensePlate = licensePlate;
@@ -30,6 +30,7 @@ public class AirPlane {
         this.crew = crew;
         this.coordinate = new Coordinate(100, 100, 0);
         this.airPlaneType = airPlaneType;
+        this.origin = origin;
     }
 
     public String getBrand() { return brand; }
@@ -380,7 +381,7 @@ public class AirPlane {
                 boolean possibleCrash = true;
 
                 while(possibleCrash) {
-                    kmH = askForKmH(airPlane);
+                    kmH = askForKmH();
                     possibleCrash = controllVelocity(kmH, airPlane);
                 }
             } else {
@@ -393,23 +394,23 @@ public class AirPlane {
                 if(airPlane.getUndercarriage()) {
                     boolean possibleCrash = true;
                     while(possibleCrash) { // loop for control the possibles crashes
-                        kmH = askForKmH(airPlane); // ask for km/h
+                        kmH = askForKmH(); // ask for km/h
                         possibleCrash = controllVelocity(kmH, airPlane); // control the entrie from user
                     }
                 } else {
-                    kmH = askForKmH(airPlane); // ask for km/h
+                    kmH = askForKmH(); // ask for km/h
                     airPlane.setVelocity(kmH);
                     exit = false; // for dont exit from loop MenuManage
                 }
             } else {
-                kmH = askForKmH(airPlane);
+                kmH = askForKmH();
                 airPlane.setVelocity(kmH);
                 exit = false; // for dont exit from loop MenuManage
             }
         }
     }
 
-    public static int askForKmH(AirPlane airPlane){
+    public static int askForKmH(){
         int kmH;
 
         System.out.print("How many Km/h you want? ");
