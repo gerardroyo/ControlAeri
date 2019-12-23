@@ -34,6 +34,7 @@ public class Main {
                     airPlaneToManipulate = AirController.askForAirPlane();// ask to user which air plane wanna controll | airPlaneToManipulate = the airplane specific that user wanna controll
                     while(optionManage != 0) {
                         AirPlane.showStats(airPlaneToManipulate);
+                        AirController.showEnemies(airPlaneToManipulate);
                         if(airPlaneToManipulate.getAirPlaneType() == 1) {
                             optionManage = Menu.menuManageCommercial();//ask to the user some option from MenuManage | optionManage = option that user selected
                         } else {
@@ -54,7 +55,7 @@ public class Main {
                 AirController.showAirSpace(); //show all airplanes and all their stats in the area that the air controller can catch
                 break;
             case 4:
-                //EncryptBattAirPlane();
+                AirController.encrypt();
                 break;
             case 5:
                 //DecryptBattAirPlane();

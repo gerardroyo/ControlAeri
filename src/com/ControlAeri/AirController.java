@@ -111,6 +111,17 @@ public class AirController {
 
     }
 
+    public static void encrypt() {
+        for(AirPlane a:OnAirPlane) {
+            if(a instanceof CommercialAirPlane) {
+                CommercialAirPlane airPlane = (CommercialAirPlane) a;
+                if(airPlane.getEncrypted()) {
+                    Encrypt.encrypt(airPlane);
+                }
+            }
+        }
+    }
+
     public static void enemyControl(AirPlane airPlane) {
         BattleAirPlane airPlaneBattle = (BattleAirPlane) airPlane;
         int posXshoot = airPlaneBattle.getCoordinate().getX() + airPlaneBattle.getMaxRangeShot();
@@ -171,6 +182,41 @@ public class AirController {
         }
 
 
+    }
+
+    public static void showEnemies(AirPlane airPlane) {
+        BattleAirPlane airPlaneBattle = (BattleAirPlane) airPlane;
+        int posXshoot = airPlaneBattle.getCoordinate().getX() + airPlaneBattle.getMaxRangeShot();
+        int posX_shoot = airPlaneBattle.getCoordinate().getX() - 100;
+
+        int posYshoot = airPlaneBattle.getCoordinate().getY() + 100;
+        int posY_shoot = airPlaneBattle.getCoordinate().getY() - 100;
+
+        boolean enemyFounded = false;
+
+        System.out.print("AirPlane(" + airPlaneBattle.getLicensePlate() + ") Enemy detected: ");
+
+        for (AirPlane a : OnAirPlane) {
+            if (a instanceof CommercialAirPlane) {
+                CommercialAirPlane b = (CommercialAirPlane) a;
+                if ((b.getCoordinate().getY() <= posYshoot && b.getCoordinate().getY() >= posY_shoot) && (b.getCoordinate().getX() == airPlaneBattle.getCoordinate().getX())) {
+                    if (b.getEnemy() == true) {
+                        enemyFounded = true;
+                        AirPlane.showWarning(b);
+                    }
+                } else if ((a.getCoordinate().getX() <= posXshoot && a.getCoordinate().getX() >= posX_shoot) && (a.getCoordinate().getY() == airPlaneBattle.getCoordinate().getY())) {
+                    if (b.getEnemy() == true) {
+                        enemyFounded = true;
+                        AirPlane.showWarning(b);
+                    }
+                }/* else {
+                    System.out.println("No enemies founded");
+                }*/
+            }
+        }
+        if(!enemyFounded) {
+            System.out.println("No enemies founded");
+        }
     }
 
     public static void positionControl(int posX, int posY, AirPlane airPlane) {
